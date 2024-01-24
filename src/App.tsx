@@ -63,7 +63,7 @@ function App() {
     const userSub = user.sub;
     const adminIDs = users.map((admin) => admin.auth0_id);
     if (!userSub || !adminIDs.includes(userSub)) {
-      logout();
+      logout({ logoutParams: { returnTo: window.location.origin } });
       return;
     }
   }
