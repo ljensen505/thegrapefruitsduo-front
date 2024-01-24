@@ -1,0 +1,14 @@
+.musician-container {
+  margin-bottom: 6rem;
+}
+/* 
+.musician-card {
+  background-color: transparent !important;
+} */
+
+.card {
+  background-color: transparent !important;
+  backdrop-filter: blur(8px);
+  border: 0px solid transparent !important;
+  color: var(--group-info-color) !important;
+}

@@ -1,0 +1,33 @@
+.dropdown-menu {
+  background-color: rgb(113, 0, 51, 1);
+}
+
+.navbar-text-color {
+  color: var(--group-info-color) !important;
+  font-weight: bold;
+}
+
+.navbar-text-color .dropdown-toggle {
+  color: var(--group-info-color);
+}
+
+.navbar-scrolled {
+  background-color: var(--grapefruit-yellow);
+  transition: background-color 0.5s ease;
+}
+
+.logo {
+  height: 1.7rem;
+  width: auto;
+}
+
+#admin-dropdown {
+  text-decoration: none;
+  text-align: left;
+  padding-left: 0%;
+}
+
+#admin-dropdown:hover {
+  text-decoration: none;
+  color: var(--group-info-lighter-color);
+}
