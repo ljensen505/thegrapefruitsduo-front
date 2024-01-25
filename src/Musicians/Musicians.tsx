@@ -1,28 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Musician, { MusicianProps } from "./Musician/Musician";
 import { Col, Container } from "react-bootstrap";
 import "./Musicians.css";
-import { getMusicians } from "../api";
 
-function Musicians() {
-  const [musicians, setMusicians] = useState<MusicianProps[]>([]);
+interface MusiciansProps {
+  musicians: MusicianProps[];
+}
+
+function Musicians(props: MusiciansProps) {
   const [update, setUpdate] = useState<boolean>(false);
-
   const handleBioChange = () => {
     setUpdate(!update);
   };
+  const handleHeadshotChange = () => {
+    setUpdate(!update);
+  };
 
-  useEffect(() => {
-    getMusicians()
-      .then((response) => {
-        setMusicians(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [update]);
-
-  const musicianList = musicians.map((musician) => (
+  const musicianList = props.musicians.map((musician) => (
     <Musician
       key={musician.id}
       id={musician.id}
@@ -31,6 +25,7 @@ function Musicians() {
       headshot_id={musician.headshot_id}
       type="musician"
       onBioChange={handleBioChange}
+      onHeadshotChange={handleHeadshotChange}
     />
   ));
 

@@ -10,6 +10,7 @@ import { MusicianProps } from "./Musician";
 export interface HeadshotProps {
   src: string;
   musician: MusicianProps;
+  onHeadshotChange?: () => void;
 }
 
 function Headshot(props: HeadshotProps) {
@@ -17,7 +18,7 @@ function Headshot(props: HeadshotProps) {
   const [modalShow, setModalShow] = useState(false);
 
   const EditIcon = (
-    <div>
+    <Container>
       <FontAwesomeIcon
         icon={faUpload}
         className="position-absolute edit-icon"
@@ -35,10 +36,12 @@ function Headshot(props: HeadshotProps) {
           <HeadshotUpload
             currentHeadshot={props.src}
             musician={props.musician}
+            onHeadshotChange={props?.onHeadshotChange}
+            hideModal={setModalShow}
           />
         }
       />
-    </div>
+    </Container>
   );
 
   return (

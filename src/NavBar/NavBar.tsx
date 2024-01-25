@@ -4,10 +4,21 @@ import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.css";
 import { useState, useEffect } from "react";
 import AuthDropdown from "./AuthDropdown";
-import { Image } from "react-bootstrap";
+import { Image, NavDropdown } from "react-bootstrap";
+import { MusicianProps } from "../Musicians/Musician/Musician";
 
-function NavBar() {
+interface NavBarProps {
+  musicians: MusicianProps[];
+}
+
+function NavBar(props: NavBarProps) {
   const [scrolled, setScrolled] = useState(false);
+
+  const MusicianLinks = props.musicians.map((musician) => (
+    <NavDropdown.Item href={`#musician-${musician.id}`} key={musician.id}>
+      {musician.name}
+    </NavDropdown.Item>
+  ));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,9 +50,9 @@ function NavBar() {
             <Nav.Link href="#about" className="navbar-text-color">
               About
             </Nav.Link>
-            <Nav.Link href="#musicians" className="navbar-text-color">
-              Musicians
-            </Nav.Link>
+            <NavDropdown title="Musicians" className="">
+              {MusicianLinks}
+            </NavDropdown>
             <AuthDropdown />
           </Nav>
         </Navbar.Collapse>

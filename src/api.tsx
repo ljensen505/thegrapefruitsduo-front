@@ -52,9 +52,8 @@ export const patchGroup = (
 };
 
 export const postHeadshot = (id: number, file: File, user_token: string) => {
-  console.log("Not tested yet. Good luck!");
   const formData = new FormData();
-  formData.append("headshot", file);
+  formData.append("file", file);
   return api.post<MusicianProps>(`/musicians/${id}/headshot/`, formData, {
     headers: { Authorization: `Bearer ${user_token}` },
   });

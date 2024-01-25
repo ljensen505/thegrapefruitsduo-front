@@ -11,6 +11,7 @@ export interface MusicianProps {
   headshot_id: string;
   type?: string;
   onBioChange?: () => void;
+  onHeadshotChange?: () => void;
 }
 
 function Musician(props: MusicianProps) {
@@ -34,10 +35,17 @@ function Musician(props: MusicianProps) {
     />
   );
 
-  const headshot = <Headshot src={imgUrl} key="headshot" musician={props} />;
+  const headshot = (
+    <Headshot
+      src={imgUrl}
+      key="headshot"
+      musician={props}
+      onHeadshotChange={props?.onHeadshotChange}
+    />
+  );
 
   return (
-    <Container className="musician-container">
+    <Container id={`musician-${props.id}`} className="musician-container">
       <Row className="row-spacing">
         {props.id % 2 === 0 ? [bioCard, headshot] : [headshot, bioCard]}
       </Row>

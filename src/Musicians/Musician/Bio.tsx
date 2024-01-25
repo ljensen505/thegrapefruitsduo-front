@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Col, Card } from "react-bootstrap";
+import { Col, Card, Container } from "react-bootstrap";
 import EditBioForm from "../../Forms/BioForm";
 import EditModal from "../../EditModals/EditModal";
 import { MusicianProps } from "./Musician";
@@ -19,7 +19,7 @@ function Bio(props: BioProps) {
   const EditTitle = `Edit ${props.musician.name}'s Bio`;
 
   const EditIcon = (
-    <div>
+    <Container>
       <FontAwesomeIcon
         icon={faPen}
         className="position-absolute edit-icon"
@@ -39,13 +39,15 @@ function Bio(props: BioProps) {
           />
         }
       />
-    </div>
+    </Container>
   );
 
   return (
     <Col md={6} key="bioCard">
       <Card className={`${props.textPosition}`}>
-        <Card.Header className="display-6">{props.musician.name}</Card.Header>
+        <Card.Header className="display-6 musician-name">
+          {props.musician.name}
+        </Card.Header>
         <Card.Body>
           <Card.Text>{props.musician.bio}</Card.Text>
         </Card.Body>

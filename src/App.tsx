@@ -6,8 +6,8 @@ import { Container } from "react-bootstrap";
 import Group, { GroupProps } from "./Group/Group";
 import { useState, useEffect } from "react";
 import Footer from "./Footer/Footer";
-import { getGroup, getUsers, getRoot } from "./api";
-
+import { getGroup, getUsers, getRoot, getMusicians } from "./api";
+import { MusicianProps } from "./Musicians/Musician/Musician";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface User {
@@ -22,12 +22,23 @@ function App() {
   const [update, setUpdate] = useState<boolean>(false);
   const [users, setUsers] = useState<User[]>([]);
   const [apiVersion, setApiVersion] = useState<string>("");
+  const [musicians, setMusicians] = useState<MusicianProps[]>([]);
   const { user, isAuthenticated, logout } = useAuth0();
   const appVersion = import.meta.env.PACKAGE_VERSION;
 
   const handleGroupBioChange = () => {
     setUpdate(!update);
   };
+
+  useEffect(() => {
+    getMusicians()
+      .then((response) => {
+        setMusicians(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [update]);
 
   useEffect(() => {
     getRoot()
@@ -70,9 +81,9 @@ function App() {
 
   return (
     <div id="home" style={BGStyle}>
-      <NavBar />
+      <NavBar musicians={musicians} />
       <Container style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "200px" }}>
+        <div style={{ marginBottom: "400px" }}>
           <Group
             id={group?.id || 0}
             name={group?.name || ""}
@@ -81,7 +92,7 @@ function App() {
             onBioChange={handleGroupBioChange}
           />
         </div>
-        <Musicians />
+        <Musicians musicians={musicians} />
       </Container>
       <Footer apiVersion={apiVersion} appVersion={appVersion} />
     </div>
