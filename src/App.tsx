@@ -1,4 +1,4 @@
-import BGStyle from "./BackgroundStyle";
+import BGStyleFinal from "./BackgroundStyle";
 import "./App.css";
 import Musicians from "./Musicians/Musicians";
 import NavBar from "./NavBar/NavBar";
@@ -80,7 +80,7 @@ function App() {
   }
 
   return (
-    <div id="home" style={BGStyle}>
+    <div id="home" style={BGStyleFinal}>
       <NavBar musicians={musicians} />
       <Container style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ marginBottom: "400px" }}>
