@@ -10,7 +10,7 @@ export interface MusicianProps {
   bio: string;
   headshot_id: string;
   type?: string;
-  onBioChange?: () => void;
+  onBioChange: () => void;
   onHeadshotChange?: () => void;
 }
 
@@ -31,7 +31,7 @@ function Musician(props: MusicianProps) {
       key={key}
       musician={props}
       textPosition={textPosition}
-      onBioChange={props?.onBioChange}
+      onBioChange={props.onBioChange}
     />
   );
 

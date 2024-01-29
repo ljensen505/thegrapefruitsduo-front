@@ -10,7 +10,7 @@ import { MusicianProps } from "./Musician";
 interface BioProps {
   musician: MusicianProps;
   textPosition: string;
-  onBioChange?: () => void;
+  onBioChange: () => void;
 }
 
 function Bio(props: BioProps) {
@@ -35,7 +35,7 @@ function Bio(props: BioProps) {
           <EditBioForm
             entity={props.musician}
             hideModal={setModalShow}
-            onBioChange={props?.onBioChange}
+            onBioChange={props.onBioChange}
           />
         }
       />

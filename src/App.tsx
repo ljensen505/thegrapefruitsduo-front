@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 import Group, { GroupProps } from "./Group/Group";
 import { useState, useEffect } from "react";
 import Footer from "./Footer/Footer";
-import { getGroup, getUsers, getRoot, getMusicians } from "./api";
+import { getGroup, getUsers, getRoot } from "./api";
 import { MusicianProps } from "./Musicians/Musician/Musician";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -30,16 +30,6 @@ function App() {
   const handleGroupBioChange = () => {
     setUpdate(!update);
   };
-
-  useEffect(() => {
-    getMusicians()
-      .then((response) => {
-        setMusicians(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [update]);
 
   useEffect(() => {
     getRoot()
@@ -93,7 +83,7 @@ function App() {
             onBioChange={handleGroupBioChange}
           />
         </Container>
-        <Musicians musicians={musicians} />
+        <Musicians musicians={musicians} setMusicians={setMusicians} />
         <ContactForm />
       </Container>
       <Footer apiVersion={apiVersion} appVersion={appVersion} />

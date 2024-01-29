@@ -12,7 +12,7 @@ export interface GroupProps {
   name: string;
   bio: string;
   type: "group";
-  onBioChange?: () => void;
+  onBioChange: () => void;
 }
 
 function Group(props: GroupProps) {
@@ -39,7 +39,7 @@ function Group(props: GroupProps) {
           <EditBioForm
             entity={props}
             hideModal={setModalShow}
-            onBioChange={props?.onBioChange}
+            onBioChange={props.onBioChange}
           />
         }
       />

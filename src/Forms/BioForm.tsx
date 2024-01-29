@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 interface EditBioFormProps {
   entity: MusicianProps | GroupProps;
   hideModal: React.Dispatch<React.SetStateAction<boolean>>;
-  onBioChange?: () => void;
+  onBioChange: () => void;
 }
 
 function EditBioForm(props: EditBioFormProps) {
@@ -49,9 +49,7 @@ function EditBioForm(props: EditBioFormProps) {
   const updateMusician = async (accessToken: string, data: MusicianProps) => {
     patchMusician(data.id, bio, data.name, data.headshot_id, accessToken)
       .then(() => {
-        if (props.onBioChange) {
-          props.onBioChange();
-        }
+        props.onBioChange();
       })
       .catch((error) => {
         console.log(error);
