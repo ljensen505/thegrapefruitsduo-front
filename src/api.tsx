@@ -58,3 +58,7 @@ export const postHeadshot = (id: number, file: File, user_token: string) => {
     headers: { Authorization: `Bearer ${user_token}` },
   });
 };
+
+export const postMessage = (name: string, email: string, message: string) => {
+  return api.post("/contact/", { name, email, message });
+};

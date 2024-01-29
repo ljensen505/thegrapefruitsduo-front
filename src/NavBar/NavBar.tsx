@@ -47,12 +47,15 @@ function NavBar(props: NavBarProps) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <Nav.Link href="#about" className="navbar-text-color">
+            <Nav.Link href="#home" className="navbar-text-color">
               About
             </Nav.Link>
             <NavDropdown title="Musicians" className="">
               {MusicianLinks}
             </NavDropdown>
+            <Nav.Link href="#contact" className="navbar-text-color">
+              Contact
+            </Nav.Link>
             <AuthDropdown />
           </Nav>
         </Navbar.Collapse>

@@ -1,0 +1,17 @@
+#contact {
+  padding-top: 70px;
+  margin-top: -70px;
+  margin-bottom: 200px;
+}
+
+.contact-text {
+  color: var(--group-info-color);
+}
+
+.contact-button {
+  background-color: var(--group-info-color) !important;
+}
+
+.contact-button:hover {
+  background-color: var(--group-info-lighter-color) !important;
+}

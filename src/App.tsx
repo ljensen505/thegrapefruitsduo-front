@@ -2,6 +2,7 @@ import BGStyleFinal from "./BackgroundStyle";
 import "./App.css";
 import Musicians from "./Musicians/Musicians";
 import NavBar from "./NavBar/NavBar";
+import ContactForm from "./Forms/Contact/ContactForm";
 import { Container } from "react-bootstrap";
 import Group, { GroupProps } from "./Group/Group";
 import { useState, useEffect } from "react";
@@ -82,8 +83,8 @@ function App() {
   return (
     <div id="home" style={BGStyleFinal}>
       <NavBar musicians={musicians} />
-      <Container style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "400px" }}>
+      <Container id="content" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <Container style={{ marginBottom: "400px" }}>
           <Group
             id={group?.id || 0}
             name={group?.name || ""}
@@ -91,8 +92,9 @@ function App() {
             type={group?.type || "group"}
             onBioChange={handleGroupBioChange}
           />
-        </div>
+        </Container>
         <Musicians musicians={musicians} />
+        <ContactForm />
       </Container>
       <Footer apiVersion={apiVersion} appVersion={appVersion} />
     </div>
