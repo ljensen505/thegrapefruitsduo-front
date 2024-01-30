@@ -23,7 +23,7 @@ function Musician(props: MusicianProps) {
   });
   const image = cld.image(props.headshot_id);
   const imgUrl = image.toURL();
-
+  const musicianID = props.name.split(" ").join("-").toLowerCase();
   const key = `musician-${props.id}`;
 
   const bioCard = (
@@ -45,7 +45,7 @@ function Musician(props: MusicianProps) {
   );
 
   return (
-    <Container id={`musician-${props.id}`} className="musician-container">
+    <Container id={musicianID} className="musician-container">
       <Row className="row-spacing">
         {props.id % 2 === 0 ? [bioCard, headshot] : [headshot, bioCard]}
       </Row>

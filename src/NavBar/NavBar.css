@@ -7,13 +7,17 @@
   font-weight: bold;
 }
 
+.navbar-color {
+  backdrop-filter: blur(10px);
+  transition: background-color 0.5s ease;
+}
+
 .navbar-text-color .dropdown-toggle {
   color: var(--group-info-color);
 }
 
 .navbar-scrolled {
   background-color: var(--grapefruit-yellow);
-  transition: background-color 0.5s ease;
 }
 
 .logo {

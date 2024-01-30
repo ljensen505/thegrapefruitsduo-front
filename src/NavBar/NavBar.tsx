@@ -15,7 +15,11 @@ function NavBar(props: NavBarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   const MusicianLinks = props.musicians.map((musician) => (
-    <NavDropdown.Item href={`#musician-${musician.id}`} key={musician.id}>
+    <NavDropdown.Item
+      className="navbar-text-color"
+      href={"#" + musician.name.split(" ").join("-").toLowerCase()}
+      key={musician.id}
+    >
       {musician.name}
     </NavDropdown.Item>
   ));
@@ -51,6 +55,10 @@ function NavBar(props: NavBarProps) {
               About
             </Nav.Link>
             <NavDropdown title="Musicians" className="">
+              <NavDropdown.Item href="#musicians" className="navbar-text-color">
+                All
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
               {MusicianLinks}
             </NavDropdown>
             <Nav.Link href="#contact" className="navbar-text-color">

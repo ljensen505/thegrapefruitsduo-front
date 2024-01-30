@@ -45,7 +45,7 @@ function ContactForm() {
             id="contact-form"
             onSubmit={handleSubmit}
           >
-            <h3 className="display-3">Contact Us</h3>
+            <h3 className="display-3 contact-title">Contact Us</h3>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Control
                 type="text"

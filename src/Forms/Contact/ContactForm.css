@@ -4,6 +4,10 @@
   margin-bottom: 200px;
 }
 
+.contact-title {
+  margin-bottom: 6rem;
+}
+
 .contact-text {
   color: var(--group-info-color);
 }

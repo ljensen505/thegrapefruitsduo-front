@@ -13,10 +13,12 @@ interface EditBioFormProps {
 
 function EditBioForm(props: EditBioFormProps) {
   const [bio, setBio] = useState<string>(props.entity.bio);
+  const [canSubmit, setCanSubmit] = useState<boolean>(false);
   const { getAccessTokenWithPopup, getAccessTokenSilently } = useAuth0();
 
   const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBio(event.target.value);
+    setCanSubmit(true);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -71,6 +73,16 @@ function EditBioForm(props: EditBioFormProps) {
       });
   };
 
+  const SubmitButton = canSubmit ? (
+    <Button variant="primary" type="submit">
+      Submit
+    </Button>
+  ) : (
+    <Button variant="primary" type="submit" disabled>
+      Submit
+    </Button>
+  );
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBio">
@@ -80,6 +92,7 @@ function EditBioForm(props: EditBioFormProps) {
           rows={10}
           required
           value={bio}
+          autoFocus
           onChange={handleBioChange}
         />
         <Form.Text className="text-muted">
@@ -87,9 +100,7 @@ function EditBioForm(props: EditBioFormProps) {
         </Form.Text>
       </Form.Group>
       <Container className="d-flex justify-content-end">
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        {SubmitButton}
       </Container>
     </Form>
   );
