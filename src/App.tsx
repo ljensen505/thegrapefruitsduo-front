@@ -72,11 +72,7 @@ function App() {
 
   return (
     <div id="home" style={BGStyleFinal}>
-      <NavBar
-        musicians={musicians}
-        appVersion={appVersion}
-        apiVersion={apiVersion}
-      />
+      <NavBar musicians={musicians} />
       <Container id="content" style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <Container style={{ marginBottom: "400px" }}>
           <Group
@@ -90,7 +86,7 @@ function App() {
         <Musicians musicians={musicians} setMusicians={setMusicians} />
         <ContactForm />
       </Container>
-      <Footer />
+      <Footer apiVersion={apiVersion} appVersion={appVersion} />
     </div>
   );
 }

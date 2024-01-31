@@ -6,17 +6,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../Auth/LogoutButton";
 import LoginButton from "../Auth/LoginButton";
 
-interface AdminDropdownProps {
-  appVersion: string;
-  apiVersion: string;
-}
-
-function AdminDropdown(props: AdminDropdownProps) {
+function AuthDropdown() {
   const { isAuthenticated } = useAuth0();
   const AuthButton = () => {
     return isAuthenticated ? <LogoutButton /> : <LoginButton />;
   };
-
   return (
     <>
       <DropdownButton
@@ -31,13 +25,9 @@ function AdminDropdown(props: AdminDropdownProps) {
         <Dropdown.Item eventKey="1" className="text-end">
           <AuthButton />
         </Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item eventKey="2" className="text-end">
-          API: {props.apiVersion} | App: {props.appVersion}
-        </Dropdown.Item>
       </DropdownButton>
     </>
   );
 }
 
-export default AdminDropdown;
+export default AuthDropdown;

@@ -17,18 +17,3 @@ body {
   color: darkgreen;
   cursor: pointer;
 }
-
-.btn-primary {
-  background-color: var(--group-info-color);
-  border-color: var(--group-info-color);
-}
-
-.btn-primary:hover {
-  background-color: var(--group-info-lighter-color);
-  border-color: var(--group-info-lighter-color);
-}
-
-.btn-primary:disabled {
-  background-color: var(--group-info-disabled-color);
-  border-color: var(--group-info-disabled-color);
-}

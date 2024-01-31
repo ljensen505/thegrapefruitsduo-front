@@ -11,3 +11,11 @@
 .contact-text {
   color: var(--group-info-color);
 }
+
+.contact-button {
+  background-color: var(--group-info-color) !important;
+}
+
+.contact-button:hover {
+  background-color: var(--group-info-lighter-color) !important;
+}
