@@ -27,6 +27,7 @@ function Musicians(props: MusiciansProps) {
       .catch((error) => {
         console.log(error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
   const musicianList = props.musicians.map((musician) => (
