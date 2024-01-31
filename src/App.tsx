@@ -10,6 +10,7 @@ import Footer from "./Footer/Footer";
 import { getGroup, getUsers, getRoot } from "./api";
 import { MusicianProps } from "./Musicians/Musician/Musician";
 import { useAuth0 } from "@auth0/auth0-react";
+import MyVerticallyCenteredModal from "./ErrorModal/ErrorModal";
 
 interface User {
   id: number;
@@ -24,11 +25,21 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [apiVersion, setApiVersion] = useState<string>("");
   const [musicians, setMusicians] = useState<MusicianProps[]>([]);
+  const [error, setError] = useState<string>("");
+  const [errorModalShow, setErrorModalShow] = useState<boolean>(false);
+  const [errorEntity, setErrorEntity] = useState<string>("");
   const { user, isAuthenticated, logout } = useAuth0();
   const appVersion = import.meta.env.PACKAGE_VERSION;
 
   const handleGroupBioChange = () => {
     setUpdate(!update);
+  };
+
+  const handleError = (error: string, entity: string) => {
+    console.log(error);
+    setError(error);
+    setErrorEntity(entity);
+    setErrorModalShow(true);
   };
 
   useEffect(() => {
@@ -37,7 +48,7 @@ function App() {
         setApiVersion(response.data.version);
       })
       .catch((error) => {
-        console.log(error);
+        handleError(error.message, "root");
       });
   }, []);
 
@@ -47,7 +58,7 @@ function App() {
         setGroup(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        handleError(error.message, "group");
       });
   }, [update]);
 
@@ -57,7 +68,7 @@ function App() {
         setUsers(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        handleError(error.message, "users");
       });
   }, []);
 
@@ -91,6 +102,12 @@ function App() {
         <ContactForm />
       </Container>
       <Footer />
+
+      <MyVerticallyCenteredModal
+        error={error}
+        show={errorModalShow}
+        entity={errorEntity}
+      />
     </div>
   );
 }
