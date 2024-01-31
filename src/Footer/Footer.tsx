@@ -8,23 +8,11 @@ import "./Footer.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 
-interface FooterProps {
-  apiVersion: string;
-  appVersion: string;
-}
-
 const copyright = (
   <p className="text-center">&copy; 2024 The Grapefruits Duo</p>
 );
 
-function Footer(props: FooterProps) {
-  const { apiVersion, appVersion } = props;
-  const versionInfo = (
-    <p className="text-center">
-      API Version: {apiVersion} | App Version: {appVersion}
-    </p>
-  );
-
+function Footer() {
   return (
     <footer className="footer py-3">
       <Container>
@@ -57,9 +45,6 @@ function Footer(props: FooterProps) {
         </Row>
         <Row>
           <Col className="text-center">{copyright}</Col>
-        </Row>
-        <Row>
-          <Col className="text-center">{versionInfo}</Col>
         </Row>
       </Container>
     </footer>

@@ -17,3 +17,24 @@ body {
   color: darkgreen;
   cursor: pointer;
 }
+
+.btn-primary {
+  background-color: var(--group-info-color);
+  border-color: var(--group-info-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--group-info-lighter-color);
+  border-color: var(--group-info-lighter-color);
+}
+
+.btn-primary:disabled {
+  background-color: var(--group-info-disabled-color);
+  border-color: var(--group-info-disabled-color);
+}
+
+.btn-primary:focus {
+  background-color: var(--group-info-darker-color);
+  border-color: var(--group-info-darker-color);
+  box-shadow: 0 0 0 0.2rem var(--group-info-darker-color);
+}
