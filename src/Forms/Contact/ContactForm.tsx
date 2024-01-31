@@ -79,7 +79,7 @@ function ContactForm() {
                 onChange={handleFormChange}
               />
             </Form.Group>
-            <Button variant="primary" className="contact-button" type="submit">
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
