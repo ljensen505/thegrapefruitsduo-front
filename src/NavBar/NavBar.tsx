@@ -3,12 +3,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.css";
 import { useState, useEffect } from "react";
-import AuthDropdown from "./AuthDropdown";
+import AdminDropdown from "./AdminDropdown";
 import { Image, NavDropdown } from "react-bootstrap";
 import { MusicianProps } from "../Musicians/Musician/Musician";
 
 interface NavBarProps {
   musicians: MusicianProps[];
+  appVersion: string;
+  apiVersion: string;
 }
 
 function NavBar(props: NavBarProps) {
@@ -64,7 +66,10 @@ function NavBar(props: NavBarProps) {
             <Nav.Link href="#contact" className="navbar-text-color">
               Contact
             </Nav.Link>
-            <AuthDropdown />
+            <AdminDropdown
+              apiVersion={props.apiVersion}
+              appVersion={props.appVersion}
+            />
           </Nav>
         </Navbar.Collapse>
       </Container>
