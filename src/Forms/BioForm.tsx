@@ -16,8 +16,6 @@ function EditBioForm(props: EditBioFormProps) {
   const [canSubmit, setCanSubmit] = useState<boolean>(false);
   const { userToken } = useAuth();
 
-  console.log(`userToken Bio: ${userToken}`);
-
   const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBio(event.target.value);
     setCanSubmit(true);
