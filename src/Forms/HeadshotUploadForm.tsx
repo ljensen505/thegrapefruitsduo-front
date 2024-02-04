@@ -21,8 +21,6 @@ function HeadshotUpload(props: HeadshotUploadProps) {
   const [canSubmit, setCanSubmit] = useState<boolean>(false);
   const { userToken } = useAuth();
 
-  console.log(`userToken Headshot: ${userToken}`);
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const allowedTypes = ["image/jpeg", "image/png"];
     const file = event.target.files?.[0];
