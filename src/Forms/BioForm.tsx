@@ -3,7 +3,7 @@ import { MusicianProps } from "../Musicians/Musician/Musician";
 import { GroupProps } from "../Group/Group";
 import { patchMusician, patchGroup } from "../api";
 import { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../Auth/AuthContext";
 
 interface EditBioFormProps {
   entity: MusicianProps | GroupProps;
@@ -14,7 +14,9 @@ interface EditBioFormProps {
 function EditBioForm(props: EditBioFormProps) {
   const [bio, setBio] = useState<string>(props.entity.bio);
   const [canSubmit, setCanSubmit] = useState<boolean>(false);
-  const { getAccessTokenWithPopup, getAccessTokenSilently } = useAuth0();
+  const { userToken } = useAuth();
+
+  console.log(`userToken Bio: ${userToken}`);
 
   const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBio(event.target.value);
@@ -23,26 +25,13 @@ function EditBioForm(props: EditBioFormProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
-    let accessToken = await getAccessTokenSilently({
-      authorizationParams: { audience: audience },
-    }).catch(async (error) => {
-      console.log(error);
-      accessToken = await getAccessTokenWithPopup({
-        authorizationParams: { audience: audience },
-      });
-    });
 
-    if (!accessToken) {
-      console.log("no access token");
-      return;
-    }
     if (props.entity.type === "musician") {
-      updateMusician(accessToken, props.entity);
+      updateMusician(userToken, props.entity);
     }
 
     if (props.entity.type === "group") {
-      updateGroup(accessToken, props.entity);
+      updateGroup(userToken, props.entity);
     }
 
     props.hideModal(false);

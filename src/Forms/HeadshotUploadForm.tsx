@@ -2,8 +2,8 @@ import { Form, Image, Button, Container } from "react-bootstrap";
 import { MusicianProps } from "../Musicians/Musician/Musician";
 import { useState } from "react";
 import { postHeadshot } from "../api";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./HeadshotUpload.css";
+import { useAuth } from "../Auth/AuthContext";
 
 const sizeLimit = 1000000; // one megabyte
 
@@ -19,7 +19,9 @@ function HeadshotUpload(props: HeadshotUploadProps) {
   const [fileError, setFileError] = useState<string>("");
   const [preview, setPreview] = useState<string>(props.currentHeadshot);
   const [canSubmit, setCanSubmit] = useState<boolean>(false);
-  const { getAccessTokenWithPopup, getAccessTokenSilently } = useAuth0();
+  const { userToken } = useAuth();
+
+  console.log(`userToken Headshot: ${userToken}`);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const allowedTypes = ["image/jpeg", "image/png"];
@@ -54,23 +56,14 @@ function HeadshotUpload(props: HeadshotUploadProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
-    let accessToken = await getAccessTokenSilently({
-      authorizationParams: { audience: audience },
-    }).catch(async (error) => {
-      console.error(error);
-      accessToken = await getAccessTokenWithPopup({
-        authorizationParams: { audience: audience },
-      });
-    });
 
-    if (!accessToken) {
+    if (!userToken) {
       console.error("no access token");
       return;
     }
 
     if (props.musician && selectedFile) {
-      uploadHeadshot(accessToken, props.musician, selectedFile);
+      uploadHeadshot(userToken, props.musician, selectedFile);
       props.hideModal?.(false);
 
       return;

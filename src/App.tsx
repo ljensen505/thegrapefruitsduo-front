@@ -11,6 +11,7 @@ import { getGroup, getUsers, getRoot } from "./api";
 import { MusicianProps } from "./Musicians/Musician/Musician";
 import { useAuth0 } from "@auth0/auth0-react";
 import MyVerticallyCenteredModal from "./ErrorModal/ErrorModal";
+import AuthProvider from "./Auth/AuthContext";
 
 interface User {
   id: number;
@@ -82,33 +83,37 @@ function App() {
   }
 
   return (
-    <div id="home" style={BGStyleFinal}>
-      <NavBar
-        musicians={musicians}
-        apiVersion={apiVersion}
-        appVersion={appVersion}
-      />
-      <Container id="content" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <Container style={{ marginBottom: "400px" }}>
-          <Group
-            id={group?.id || 0}
-            name={group?.name || ""}
-            bio={group?.bio || ""}
-            type={group?.type || "group"}
-            onBioChange={handleGroupBioChange}
-          />
+    <AuthProvider>
+      <div id="home" style={BGStyleFinal}>
+        <NavBar
+          musicians={musicians}
+          apiVersion={apiVersion}
+          appVersion={appVersion}
+        />
+        <Container
+          id="content"
+          style={{ maxWidth: "1200px", margin: "0 auto" }}
+        >
+          <Container style={{ marginBottom: "400px" }}>
+            <Group
+              id={group?.id || 0}
+              name={group?.name || ""}
+              bio={group?.bio || ""}
+              type={group?.type || "group"}
+              onBioChange={handleGroupBioChange}
+            />
+          </Container>
+          <Musicians musicians={musicians} setMusicians={setMusicians} />
+          <ContactForm />
         </Container>
-        <Musicians musicians={musicians} setMusicians={setMusicians} />
-        <ContactForm />
-      </Container>
-      <Footer />
-
-      <MyVerticallyCenteredModal
-        error={error}
-        show={errorModalShow}
-        entity={errorEntity}
-      />
-    </div>
+        <Footer />
+        <MyVerticallyCenteredModal
+          error={error}
+          show={errorModalShow}
+          entity={errorEntity}
+        />
+      </div>
+    </AuthProvider>
   );
 }
 
